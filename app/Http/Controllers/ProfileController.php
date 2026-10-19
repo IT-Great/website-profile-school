@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -59,5 +61,46 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('login-page')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Username & Password Hardcode
+        $username = 'great';
+        $password = 'Gre@tGret@Greti';
+
+        if (
+            $request->name === $username &&
+            $request->password === $password
+        ) {
+            Log::info('Login successful.');
+
+            // Simpan status login ke session
+            session([
+                'admin_logged_in' => true,
+                'admin_username' => $username,
+            ]);
+
+            return redirect()->route('dashboard-page');
+        }
+
+        Log::warning('Login failed for user: ' . $request->name);
+
+        return redirect()->route('login-page')
+            ->withErrors([
+                'name' => 'Username atau password tidak sesuai dengan data kami.'
+            ])
+            ->withInput();
     }
 }
