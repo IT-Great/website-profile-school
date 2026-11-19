@@ -97,14 +97,37 @@ const websiteMenu = [
     },
 
     {
-        title: 'Pages',
+        title: 'Header',
         icon: FileText,
-        href: '/admin/pages',
+        href: route('admin.header-pages.index'),
     },
     {
         title: 'Programs',
         icon: GraduationCap,
-        href: '/admin/programs',
+        key: 'programs',
+
+        children: [
+            {
+                title: 'Our Programs',
+                icon: Sparkles,
+                href: route('admin.ourprograms.index'),
+            },
+            {
+                title: 'Preschool',
+                icon:  Sparkles,
+                href: route('admin.preschool.index'),
+            },
+            {
+                title: 'Primary',
+                icon: Sparkles,
+                href: route('admin.primary-program.index'),
+            },
+            {
+                title: 'Secondary',
+                icon: Sparkles,
+                href: route('admin.secondary-program.index'),
+            },
+        ],
     },
     {
         title: 'Curriculum',
@@ -127,58 +150,38 @@ const websiteMenu = [
         href: route('admin.posts.index'),
     },
     {
+        title: 'School Activity',
+        icon: CalendarDays,
+        href: route('admin.school-activities.index'),
+    },
+    {
         title: 'Achievements',
         icon: Trophy,
-        href: '',
+        href: route('admin.achievements.index'),
     },
     {
         title: 'Alumni / Testimonials',
         icon: UsersRound,
         href: route('admin.alumnis.index'),
     },
-    {
-        title: 'Teachers',
-        icon: UserRound,
-        href: '/admin/teachers',
-    },
-    {
-        title: 'Banners',
-        icon: Image,
-        href: '/admin/banners',
-    },
-    {
-        title: 'Menus',
-        icon: Menu,
-        href: '/admin/menus',
-    },
-    {
-        title: 'Media Library',
-        icon: FolderOpen,
-        href: '/admin/media',
-    },
-    {
-        title: 'Contacts (Messages)',
-        icon: Mail,
-        href: '/admin/messages',
-    },
 ]
 
 const systemMenu = [
-    {
-        title: 'Users',
-        icon: Users,
-        href: '/admin/users',
-    },
-    {
-        title: 'Roles & Permissions',
-        icon: ShieldCheck,
-        href: '/admin/roles',
-    },
-    {
-        title: 'Activity Log',
-        icon: History,
-        href: '/admin/activity-log',
-    },
+    // {
+    //     title: 'Users',
+    //     icon: Users,
+    //     href: '/admin/users',
+    // },
+    // {
+    //     title: 'Roles & Permissions',
+    //     icon: ShieldCheck,
+    //     href: '/admin/roles',
+    // },
+    // {
+    //     title: 'Activity Log',
+    //     icon: History,
+    //     href: '/admin/activity-log',
+    // },
 ]
 
 const toggleMenu = (key) => {

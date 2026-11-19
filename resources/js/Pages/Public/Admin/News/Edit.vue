@@ -3,6 +3,7 @@ import { computed, ref } from 'vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 import AdminLayout from '@/Layouts/Admin/AdminLayout.vue'
+import TipTapEditor from '@/Components/Admin/TipTapEditor.vue'
 
 const props = defineProps({
     post: {
@@ -351,11 +352,7 @@ const submit = () => {
                                     Content
                                 </label>
 
-                                <textarea
-                                    v-model="form.content"
-                                    :height="500"
-                                    placeholder="Write your article content here..."
-                                />
+                                <TipTapEditor v-model="form.content" upload-url="/admin/articles/upload-image" />
 
                                 <p
                                     v-if="form.errors.content"

@@ -40,25 +40,28 @@ const addFeature = () => form.features.push('');
 const removeFeature = (index) => form.features.splice(index, 1);
 
 const submit = () => {
-    router.post(
-        route('admin.curriculum.update', props.curriculum.id),
-        {
-            _method: 'put',
-            badge_title: form.badge_title,
-            title: form.title,
-            description: form.description,
-            image_position: form.image_position,
-            sort_order: form.sort_order,
-            status: form.status ? 1 : 0,
-            features: form.features,
-            image: form.image,
-        },
+    if (!canSubmit.value) {
+        alert('The activity must have between 3 and 10 photos.')
+        return
+    }
+
+    const payload = {
+        ...form.data(),
+        _method: 'PUT',
+        semester: Number(form.semester),
+        is_active: form.is_active ? 1 : 0,
+    }
+
+    console.log('PAYLOAD:', payload)
+
+    form.transform(() => payload).post(
+        route('admin.school-activities.update', props.activity.id),
         {
             forceFormData: true,
             preserveScroll: true,
         }
-    );
-};
+    )
+}
 </script>
 
 <template>

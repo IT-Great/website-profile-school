@@ -1,5 +1,6 @@
 <script setup>
 import AdminLayout from '@/Layouts/Admin/AdminLayout.vue'
+import TipTapEditor from '@/Components/Admin/TipTapEditor.vue'
 
 import {
     Head,
@@ -481,47 +482,38 @@ const submit = () => {
 
 
                                 <div>
-
-                                    <h2 class="card-title">
+                                    <label class="mb-2 block text-sm font-medium text-gray-700">
                                         Article Content
-                                    </h2>
+                                    </label>
 
-                                    <p class="card-description">
-                                        Write the complete content
-                                        displayed on the detail page.
+                                    <TipTapEditor v-model="form.content" upload-url="/admin/articles/upload-image" />
+
+                                    <p v-if="form.errors.content" class="mt-1 text-sm text-red-600">
+                                        {{ form.errors.content }}
                                     </p>
-
                                 </div>
 
                             </div>
 
 
-                            <div class="p-6">
-
-                                <label class="form-label">
+                            <!-- <div>
+                                <label class="form-label mb-2 block">
                                     Content
                                 </label>
 
-
-                                <textarea
+                                <TipTapEditor
                                     v-model="form.content"
-                                    rows="18"
-                                    class="form-input
-                                           min-h-[420px]
-                                           resize-y
-                                           leading-7"
-                                    placeholder="Write the article content here..."
+                                    :height="420"
+                                    placeholder="Write your article content here..."
                                 />
-
 
                                 <p
                                     v-if="form.errors.content"
-                                    class="form-error"
+                                    class="mt-2 text-sm text-red-500"
                                 >
                                     {{ form.errors.content }}
                                 </p>
-
-                            </div>
+                            </div> -->
 
                         </div>
 
